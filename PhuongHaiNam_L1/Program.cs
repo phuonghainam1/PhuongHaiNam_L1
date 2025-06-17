@@ -1,8 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using PhuongHaiNam_L1.Models; // Add this line if EmployeeManagementContext is in the Data namespace
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<EmployeeManagementContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
